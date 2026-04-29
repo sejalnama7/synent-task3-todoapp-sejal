@@ -84,3 +84,25 @@ function loadTasks() {
     createTask(task);
   });
 }
+
+
+function updateTaskStatus(taskText, status) {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  tasks = tasks.map(task => {
+    if (task.text === taskText) {
+      task.completed = status;
+    }
+    return task;
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function deleteTask(taskText) {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  tasks = tasks.filter(task => task.text !== taskText);
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
