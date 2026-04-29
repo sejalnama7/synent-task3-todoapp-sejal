@@ -69,3 +69,18 @@ function createTask(taskObj) {
 
   document.getElementById("taskList").appendChild(li);
 }
+
+
+function saveTask(taskObj) {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks.push(taskObj);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function loadTasks() {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  tasks.forEach(task => {
+    createTask(task);
+  });
+}
